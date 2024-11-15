@@ -1,0 +1,17 @@
+{
+  "name": "scripts",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@types/semver": "^7.5.8",
+    "@web3-storage/w3up-client": "^15.0.0",
+    "semver": "^7.6.2",
+    "smol-toml": "^1.2.2"
+  }
+}

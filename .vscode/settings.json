@@ -1,0 +1,14 @@
+{
+  "[aiken]": {
+    "editor.defaultFormatter": "txpipe.aiken"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "prettier.useEditorConfig": false,
+  "prettier.configPath": ".prettierrc"
+}

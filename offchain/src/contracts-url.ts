@@ -1,0 +1,1 @@
+export default 'https://bafkreigq7bnsin33zynqbwt45oytfg6nqalur3matsx6u3xuxhdh7qzw4q.ipfs.w3s.link'

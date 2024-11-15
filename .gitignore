@@ -1,0 +1,48 @@
+# Logs
+logs
+*.log
+
+# Output of 'npm pack'
+*.tgz
+
+# Windows Zone Identifier
+:Zone.Identifier
+
+# Build generated folders
+build/
+dist/
+docs/
+artifacts/
+.parcel-cache/
+
+
+# dependencies
+node_modules
+.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# testing
+coverage
+
+# next.js
+.next/
+out/
+
+# misc
+.DS_Store
+*.pem
+
+# local env files
+.env
+.env*.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# web3 storage proof
+.proof

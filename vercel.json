@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "public": false,
+  "framework": "nextjs",
+  "devCommand": "pnpm dev",
+  "installCommand": "pnpm install",
+  "buildCommand": "pnpm build",
+  "outputDirectory": "web/.next",
+  "github": {
+    "enabled": false
+  }
+}

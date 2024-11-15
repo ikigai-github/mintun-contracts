@@ -1,0 +1,54 @@
+{
+  "name": "@ikigai-github/mintun-offchain",
+  "version": "0.1.0",
+  "description": "An offchain library for interacting with Mintun smart contracts",
+  "author": "Genun Games",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ikigai-github/mintun.git"
+  },
+  "source": "src/index.ts",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "files": [
+    "dist/**/*",
+    "LICENSE",
+    "README.md"
+  ],
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "engines": {
+    "node": ">= 18"
+  },
+  "contracts": "TBA",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "parcel build",
+    "watch": "parcel watch",
+    "format": "prettier --write .",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@parcel/packager-ts": "2.12.0",
+    "@parcel/transformer-typescript-types": "2.12.0",
+    "@types/node": "^20",
+    "parcel": "2.12.0",
+    "typescript": "^5",
+    "vitest": "^0.34.6"
+  },
+  "dependencies": {
+    "@sinclair/typebox": "^0.32.27"
+  },
+  "peerDependencies": {
+    "lucid-cardano": "^0.10.10"
+  }
+}

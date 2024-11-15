@@ -1,0 +1,50 @@
+name: Check Contract Version
+
+on:
+  pull_request:
+    paths:
+      - 'contracts/plutus.json'
+
+jobs:
+  check-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Check if plutus.json changed
+        id: plutus_changed
+        run: |
+          if git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep -q 'contracts/plutus.json'; then
+            echo "plutus_changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "plutus_changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Extract version from aiken.toml (base)
+        if: steps.plutus_changed.outputs.plutus_changed == 'true'
+        id: base_version
+        run: |
+          base_version=$(git show ${{ github.event.pull_request.base.sha }}:contracts/aiken.toml | grep -oP '(?<=version = ").*(?=")' | head -n 1)
+          echo "base_version=$base_version" >> $GITHUB_OUTPUT
+
+      - name: Extract version from aiken.toml (head)
+        if: steps.plutus_changed.outputs.plutus_changed == 'true'
+        id: head_version
+        run: |
+          head_version=$(grep -oP '(?<=version = ").*(?=")' contracts/aiken.toml | head -n 1)
+          echo "head_version=$head_version" >> $GITHUB_OUTPUT
+
+      - name: Compare versions and fail if necessary
+        if: steps.plutus_changed.outputs.plutus_changed == 'true' && steps.base_version.outputs.base_version == steps.head_version.outputs.head_version
+        run: |
+          echo "onchain scripts changed but aiken.toml version did not change. Failing the build."
+          echo "Run pnpm contracts:bump:{major|minor|patch} script to update the version on the PR"
+          exit 1
+
+      - name: Success message
+        if: steps.plutus_changed.outputs.plutus_changed == 'true' && steps.base_version.outputs.base_version != steps.head_version.outputs.head_version
+        run: |
+          echo "Both contracts.json changed and aiken.toml version updated."
